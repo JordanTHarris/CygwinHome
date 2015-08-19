@@ -1,0 +1,57 @@
+[push]
+	default = matching
+[core]
+	trustctime = false
+	editor = vim
+	filemode = false
+[color]
+	ui = true
+[credential]
+	helper = cache --timeout=3600
+[merge]
+	tool = vimdiff
+[mergetool]
+	keeptemporaries = false
+	keepbackups = false
+	prompt = false
+	trustexitcode = false
+[alias]
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	cl = clone
+	ci = commit
+	st = status -sb
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	sync = !git pull && git push
+[user]
+	name = JordanTHarris
+	email = jordanharris1175@gmail.com
+
+# Added from my other Git system
+
+[diff]
+	tool = vimdiff
+	algorithm = histogram
+
+[difftool]
+	prompt = false
+[difftool "bc4"]
+	cmd = \"c:/program files (x86)/beyond compare 3/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
+[difftool "p4"]
+	cmd = \"c:/program files/Perforce/p4merge.exe\" \"$LOCAL\" \"$REMOTE\"
+[difftool "vs2012"]
+	cmd = \"c:/program files (x86)/microsoft visual studio 11.0/common7/ide/devenv.exe\" '//diff' \"$LOCAL\" \"$REMOTE\"
+[difftool "vs2013"]
+	cmd = \"c:/program files (x86)/microsoft visual studio 12.0/common7/ide/devenv.exe\" '//diff' \"$LOCAL\" \"$REMOTE\"
+[difftool "vs2015"]
+	cmd = \"c:/program files (x86)/microsoft visual studio 14.0/common7/ide/devenv.exe\" '//diff' \"$LOCAL\" \"$REMOTE\"
+[difftool "vimdiff"]
+	cmd = vim -d \"$LOCAL\" \"$REMOTE\"
+
+[core]
+	# Exclude Windows system files
+	excludesfile = C:\\Users\\Jordan\\Documents\\Git\\Docs\\gitignore\\Global\\Windows.gitignore

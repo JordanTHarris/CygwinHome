@@ -1,0 +1,19 @@
+# Sensitive files that shouldn't be shared
+**/.ssh
+
+# History files
+*.zsh_history
+*.lesshst
+*.viminfo
+*.zcalc_history
+
+# Random files I don't need to back up
+*.zsh_favlist
+*.bash_history
+**/.local
+**/.emacs.d
+**/.fonts
+*.zsh-update
+**/awesome-terminal-fonts
+*.db
+*.log
