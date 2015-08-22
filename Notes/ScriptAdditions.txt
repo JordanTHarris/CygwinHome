@@ -1,0 +1,20 @@
+================================================================================
+Powerlevel9k Zsh Theme Additions:
+
+# Addition that shows the Vi mode (normal/insert) when Zsh has Vi mode enabled.
+VIMODE='[Insert]'
+function zle-keymap-select {
+ VIMODE="${${KEYMAP/vicmd/[Normal]}/(main|viins)/[Insert]}"
+ zle reset-prompt
+}
+
+zle -N zle-keymap-select
+
+# vimode information
+prompt_vimode() {
+  if [[ "$KEYMAP" == "vicmd" || "$KEYMAP" == "main" || "$KEYMAP" == "viins" ]]; 
+  then
+    $1_prompt_segment "$0" "magenta" "$DEFAULT_COLOR" "${VIMODE}"
+  fi
+}
+================================================================================

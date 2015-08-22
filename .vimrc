@@ -16,6 +16,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/unite.vim'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -28,17 +30,26 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 " NERD Tree plugin configuration
-autocmd StdinReadPre * let s:std_in=1
+autocmd StdinReadPre * let s:std_in=2
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " NERD Tree settings:
 " Map Ctrl-Alt-n to open NERDTree
-map <C-A-n> :NERDTreeToggle<CR>   
+map <F2> :NERDTreeToggle<CR>   
 "===============================================================================
 " Vim 'look and feel' settings
+
+" Column is at 81 instead of 80 so the left edge is at 80
 set colorcolumn=81
+" Hybrid line number (normal on current line; relative on others)
+set relativenumber
 set number
 syntax on
-set mouse=a
+"set mouse=a
+"
+" Disable 'auto comments' when pressing enter or 'o' when on a commented
+"au FileType vim setlocal fo-=r fo-=o       " Vim files
+au FileType * setlocal fo-=r fo-=o          " All files
+
 "colorscheme vim-brogrammer-theme/colors/brogrammer
 "colorscheme neon
 
@@ -59,4 +70,11 @@ set clipboard=unnamed
 "map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!/dev/clipboard -o<CR>JxkJx:set nopaste<CR>
 vnoremap <C-c> "*y
 
+" Set dd to delete to black hole registry
+nnoremap dd "_d
+vnoremap dd "_d
+
 set tabstop=4 shiftwidth=4 expandtab
+
+" Lessen the delay when pressing ESC key
+set timeoutlen=1000 ttimeoutlen=10

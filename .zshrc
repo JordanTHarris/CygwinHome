@@ -1,6 +1,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+export TERM="xterm-256color"
+
+# Use Vim key bindings
+#bindkey -v
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -22,6 +27,8 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # Autoload zsh functions
 autoload -Uz zcalc
 autoload -Uz zmv
+
+#export KEYTIMEOUT=1
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -66,7 +73,13 @@ autoload -Uz zmv
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Keep zsh-syntax-highlighting at the END
-plugins=(git web-search colored-man extract dircycle ant zsh-syntax-highlighting)
+plugins=(git web-search extract dircycle ant zsh-syntax-highlighting)
+
+# Fix vi mode's history completion
+#bindkey "^[OA" history-incremental-search-backward
+#bindkey "^[OB" history-incremental-search-forward
+#bindkey "^[[A" up-line-or-history
+#bindkey "^[[B" down-line-or-history
 
 # User configuration
 
@@ -74,6 +87,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -110,7 +126,7 @@ DEFAULT_USER=Jordan@Jordans-PC
 export EDITOR="subl -w"
 
 # My aliases
-alias skydrive="cd /c/Users/Jordan/SkyDrive"
+#===============================================================================
 alias juce="cd /c/Programming/CPPLibraries/JUCE"
 alias jucer="open '/c/Programming/CPPLibraries/JUCE/extras/Introjucer/Builds/VisualStudio2015/x64/Release/The Introjucer.exe'"
 # ask before permanetely deleting file (use trash instead)
@@ -128,19 +144,7 @@ alias openhere="explorer ."		#open current directory in Windows Explorer
 alias mirrorremote="git fetch origin && git reset --hard origin/master && git clean -f -d"
 
 alias admin="cygstart --action=runas"
-
-# An attempt at making a function that opens Inbox by GMail in different ways
-#inbox() {
-#	if [ $1 =  ]; then
-#		open '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' --profile-directory=Default --app-id=pkclgpgponpjmpfokoepglboejdobkpl
-#		echo "option 1"
-#	elif [ "$1" = "-t" ]; then
-#		'/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' --new-tab-page-4 https://inbox.google.com/
-#		echo "option 2"
-#	else 
-#		echo "error: wrong arguments given (try -t or no arguments)"
-#	fi
-#}
+#===============================================================================
 
 # Command line calculator function:
 calc(){ awk "BEGIN{ print $* }" ;}

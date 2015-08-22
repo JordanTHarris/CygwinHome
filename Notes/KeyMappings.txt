@@ -1,0 +1,13 @@
+VIM Key Combinations:
+
+f<char>x    -> delete next char
+yyp         -> duplicate to next line
+================================================================================
+VIM Custom Key Mappings:
+
+F2          -> open NERDTree
+================================================================================
+Tmux Custom Key Mappings:
+
+Alt + a     -> prefix
+================================================================================
