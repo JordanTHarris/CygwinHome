@@ -1,0 +1,18 @@
+/home/Jordan/Desktop was removed, reassigning DESKTOP to homedir
+/home/Jordan/Downloads was removed, reassigning DOWNLOAD to homedir
+/home/Jordan/Templates was removed, reassigning TEMPLATES to homedir
+/home/Jordan/Public was removed, reassigning PUBLICSHARE to homedir
+/home/Jordan/Documents was removed, reassigning DOCUMENTS to homedir
+/home/Jordan/Music was removed, reassigning MUSIC to homedir
+/home/Jordan/Pictures was removed, reassigning PICTURES to homedir
+/home/Jordan/Videos was removed, reassigning VIDEOS to homedir
+      0 [main] xwin-xdg-menu 5752 child_info_fork::abort: C:\Users\Jordan\.babun\cygwin\bin\cygXrender-1.dll: Loaded to different address: parent(0x2D0000) != child(0x3D0000)
+Failed to connect to socket /tmp/fam-Jordan/fam-
+
+(process:16104): GLib-GIO-WARNING **: FAMOpen failed, FAMErrno=3
+
+      0 [main] xwin-xdg-menu 236 child_info_fork::abort: C:\Users\Jordan\.babun\cygwin\bin\cygXrender-1.dll: Loaded to different address: parent(0x2D0000) != child(0x3D0000)
+Failed to connect to socket /tmp/fam-Jordan/fam-
+
+(process:16104): GLib-GIO-WARNING **: FAMOpen failed, FAMErrno=3
+
