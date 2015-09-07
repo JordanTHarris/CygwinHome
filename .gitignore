@@ -7,6 +7,8 @@
 *.viminfo
 *.zcalc_history
 
+
+
 # Random files I don't need to back up
 *.zsh_favlist
 *.bash_history
@@ -18,3 +20,21 @@
 *.db
 *.log
 **/.cache
+**/.vim/.backup
+**/.vim/.undo
+**/.vim/.tmp
+
+.zcompdump*
+*.xsession-errors
+.wakatime*
+*.xinitrc
+.z.*
+python*
+*bin
+**/.emacs.d
+**/nerd-fonts
+*.Xauthority
+*.XWinrc
+/.dbus*
+**/.subversion
+**/.z

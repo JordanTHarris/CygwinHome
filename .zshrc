@@ -1,8 +1,21 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-#export TERM="xterm-256color"
+export TERM="xterm-256color"
+
+# Locale
 export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+#export TEMP64="/c/cygwin64/tmp"
+#export TMP64="/c/cygwin64/tmp"
+#===============================================================================
+
+# optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the 
+# “user@hostname” info when you’re logged in as yourself on your local machine.
+DEFAULT_USER=Jordan
+#===============================================================================
 
 # Use Vim key bindings
 #bindkey -v
@@ -11,16 +24,34 @@ export LANG="en_US.UTF-8"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel9k-custom/powerlevel9k-custom"
 
 # Powerlevel9k Theme Settings:
 #===============================================================================
-#POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='awesome-patched'
+
+# enable the vcs segment in general
+POWERLEVEL9K_SHOW_CHANGESET=false
+# just show the 6 first characters of changeset
+#POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
+
+
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="┌─"
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="└─ "
+
 # segment customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('')             # nothing on the right
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs status)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('')
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
 #POWERLEVEL9K_MODE='compatible'
+
+# Disable right prompt
+POWERLEVEL9K_DISABLE_RPROMPT=true
+
+# Source Files At Startup:
+#===============================================================================
+#source ~/Scripts/symlink_drives.sh  # Create symlink for drives at startup
 #===============================================================================
 
 # include Z (tool to speed up recent file commands)
@@ -136,16 +167,6 @@ export VISUAL=/usr/bin/vim
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.vimrc"
-alias tmuxconfig="vim ~/.tmux.conf"
-alias sourcezsh="source ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-
-# optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the 
-# “user@hostname” info when you’re logged in as yourself on your local machine.
-DEFAULT_USER=Jordan@Jordans-PC
 
 # Use Sublime Text with the command line
 #alias subl="open '/c/Program Files/Sublime Text 3/sublime_text.exe'"
@@ -153,14 +174,27 @@ DEFAULT_USER=Jordan@Jordans-PC
 
 # My aliases
 #===============================================================================
+# Aliases for quickly handling config files
+alias zshconfig="$EDITOR ~/.zshrc"
+alias vimconfig="$EDITOR ~/.vimrc"
+alias tmuxconfig="$EDITOR ~/.tmux.conf"
+alias ideavimconfig="$EDITOR /c/Users/Jordan/.ideavimrc"
+alias vsvimconfig="$EDITOR /c/Users/Jordan/.vimrc"
+alias sourcezsh="source ~/.zshrc"
+alias sourcetmux="tmux source-file ~/.tmux.conf"
+#alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+
+alias open="cygstart"
+
 alias juce="cd /c/Programming/CPPLibraries/JUCE"
 alias jucer="open '/c/Programming/CPPLibraries/JUCE/extras/Introjucer/Builds/VisualStudio2015/x64/Release/The Introjucer.exe'"
+
 # ask before permanetely deleting file (use trash instead)
 #alias rm='rm -i'
 alias vs2015="open '/c/Program Files (x86)/Microsoft Visual Studio 14.0/Common7/IDE/devenv.exe'"
 alias vsdiff="'/c/Program Files (x86)/Microsoft Visual Studio 14.0/Common7/IDE/vsDiffMerge.exe'"
 #alias vs2013="open '/c/Program Files (x86)/Microsoft Visual Studio 12.0/Common7/IDE/devenv.exe'"
-alias intellij="open '/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe'"
+#alias intellij="open '/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe'"
 	# open Inbox by GMail
 alias inbox="open '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' --new-tab-page-4 https://inbox.google.com/"
 alias cls="clear; clear;"
@@ -178,5 +212,13 @@ alias idearc="source ~/.ideazshrc"
 # Command line calculator function:
 calc(){ awk "BEGIN{ print $* }" ;}
 
+# Open IntelliJ IDEA with a path to an IntelliJ project
+function idea () {
+    if (( $# == 0 )) then
+        open '/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe'
+        return 1
+    fi
 
+    open "/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe " "$(cygpath -aw $*)"
+}
 

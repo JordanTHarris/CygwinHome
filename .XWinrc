@@ -1,9 +1,0 @@
-MENU systray { 
-xterm EXEC "xterm -display %display% -sb -sl 999" 
-SEPARATOR 
-} 
-ROOTMENU systray
-
-STYLES { 
-oclock NOFRAME 
-}
