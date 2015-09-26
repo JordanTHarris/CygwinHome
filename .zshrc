@@ -12,7 +12,7 @@ export LC_ALL="en_US.UTF-8"
 #export TMP64="/c/cygwin64/tmp"
 #===============================================================================
 
-# optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the 
+# optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the
 # “user@hostname” info when you’re logged in as yourself on your local machine.
 DEFAULT_USER=Jordan
 #===============================================================================
@@ -41,13 +41,13 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="└─ "
 
 # segment customization
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('')
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vimode)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 #POWERLEVEL9K_MODE='compatible'
 
 # Disable right prompt
-POWERLEVEL9K_DISABLE_RPROMPT=true
+#POWERLEVEL9K_DISABLE_RPROMPT=true
 
 # Source Files At Startup:
 #===============================================================================
@@ -128,13 +128,28 @@ autoload -Uz zmv
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Keep zsh-syntax-highlighting at the END
-plugins=(git web-search extract dircycle ant zsh-syntax-highlighting)
+plugins=(
+    git
+    tmux
+    web-search
+    extract
+    dircycle
+    ant
+#    vi-mode
+    vundle
+    colored-man
+    zsh-syntax-highlighting
+    history-substring-search
+)
 
 # Fix vi mode's history completion
 #bindkey "^[OA" history-incremental-search-backward
 #bindkey "^[OB" history-incremental-search-forward
 #bindkey "^[[A" up-line-or-history
 #bindkey "^[[B" down-line-or-history
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
+#===============================================================================
 
 # User configuration
 
@@ -197,6 +212,7 @@ alias vsdiff="'/c/Program Files (x86)/Microsoft Visual Studio 14.0/Common7/IDE/v
 #alias intellij="open '/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe'"
 	# open Inbox by GMail
 alias inbox="open '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' --new-tab-page-4 https://inbox.google.com/"
+alias chrome="open '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' --new-tab-page-4"
 alias cls="clear; clear;"
 alias openhere="explorer ."		#open current directory in Windows Explorer
 
@@ -218,7 +234,51 @@ function idea () {
         open '/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe'
         return 1
     fi
-
     open "/c/Program Files (x86)/JetBrains/IntelliJ IDEA 14.1.4/bin/idea64.exe " "$(cygpath -aw $*)"
 }
 
+# Create a server with Browsersync for a single html file and sync it on saves.
+function sync-single() {
+    if (( $# == 0 )) then
+        echo "Uses Browsersync to start a server and sync a"
+        echo "single file with the browser.\n"
+        echo "Example usage: \n\tsync-single \"index.html\""
+        return 1
+    else
+        browser-sync start --server --files="$1" --index="$1"
+    fi
+}
+#===============================================================================
+
+# Plugin settings:
+
+# History-Substring-Search plugin settings
+setopt HIST_IGNORE_ALL_DUPS
+#-------------------------------------------------------------------------------
+
+# Vim SuperMan plugin settings
+
+vman() {
+  vim -c "SuperMan $*"
+
+  if [ "$?" != "0" ]; then
+    echo "No manual entry for $*"
+  fi
+}
+#===============================================================================
+
+# Zsh Completion:
+
+# Use completion of man command with vman
+compdef vman="man"
+#-------------------------------------------------------------------------------
+
+# Completion for Tmuxinator
+source ~/.gem/ruby/gems/tmuxinator-0.6.11/completion/tmuxinator.zsh
+#===============================================================================
+
+# Autostart Tmux with default Tmux layout (Tmuxinator)
+# if [ -z "$TMUX" ]; then
+#   mux default
+# fi
+#===============================================================================

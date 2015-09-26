@@ -145,7 +145,7 @@ alias tmuxconfig="vim ~/.tmux.conf"
 alias sourcezsh="source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
-# optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the 
+# optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the
 # “user@hostname” info when you’re logged in as yourself on your local machine.
 DEFAULT_USER=Jordan@Jordans-PC
 

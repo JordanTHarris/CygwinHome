@@ -38,3 +38,6 @@ python*
 /.dbus*
 **/.subversion
 **/.z
+**/.w3m
+**/.cpan
+**.stackdump

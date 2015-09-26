@@ -1,0 +1,8 @@
+name: default
+root: ~/
+windows:
+    - default:
+        layout: 9148,239x45,0,0{119x45,0,0,2,119x45,120,0,1}
+        panes:
+            - cls
+            - cls
