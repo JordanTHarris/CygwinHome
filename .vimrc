@@ -35,10 +35,17 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
-colorscheme ir_black
+" colorscheme ir_black
 "colorscheme vim-brogrammer-theme/colors/brogrammer
 "colorscheme neon
 "colorscheme brocode
+set background=dark
+" colorscheme vim-material-theme/colors/material-theme
+colorscheme vim-hybrid-material/colors/hybrid_material
+
+" Make background of text same as terminal background
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -427,9 +434,9 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
     nohlsearch      " when vimrc is sourced, last search won't be highlighted
     " Use green search highlighting with black text
-    highlight Search ctermbg=2 ctermfg=black term=none
+    " highlight Search ctermbg=2 ctermfg=black term=none
     " Toggle search highlighting
-    noremap <F8> :set hlsearch! hlsearch?<CR>
+    noremap <F4> :set hlsearch! hlsearch?<CR>
 endif
 
 " Other search settings
@@ -453,7 +460,6 @@ endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
 set smartcase
 set ignorecase
 set nowrap
@@ -658,7 +664,7 @@ source $VIMRUNTIME/menu.vim
 set wildmenu
 set cpo-=<
 set wcm=<C-Z>
-map <F4> :emenu <C-Z>
+" map <F4> :emenu <C-Z>
 
 "===============================================================================
 " Toggle spell checking and print whether it's on or off:
@@ -670,14 +676,14 @@ endfunction
 nnoremap <F7> :call ToggleSpell()<CR>
 inoremap <F7> :setlocal spell! spell?<CR>
 "===============================================================================
-" Highlight current line with slightly lighter background:
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+" " Highlight current line with slightly lighter background:
+" augroup CursorLine
+"   au!
+"   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"   au WinLeave * setlocal nocursorline
+" augroup END
 
-hi CursorLine cterm=NONE ctermbg=236
+" hi CursorLine cterm=NONE ctermbg=237
 
 "===============================================================================
 " SOURCE FUNCTIONS:

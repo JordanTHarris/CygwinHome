@@ -282,3 +282,6 @@ source ~/.gem/ruby/gems/tmuxinator-0.6.11/completion/tmuxinator.zsh
 #   mux default
 # fi
 #===============================================================================
+
+# Load "default" Tmux config using Tmuxinator
+mux default

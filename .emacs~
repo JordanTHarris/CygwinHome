@@ -1,0 +1,46 @@
+(let* ((cygwin-root "c:/cygwin64")
+       (cygwin-bin (concat cygwin-root "/bin")))
+  (when (and (eq 'windows-nt system-type)
+	     (file-readable-p cygwin-root))
+  
+    (setq exec-path (cons cygwin-bin exec-path))
+    (setenv "PATH" (concat cygwin-bin ";" (getenv "PATH")))
+  
+    ;; By default use the Windows HOME.
+    ;; Otherwise, uncomment below to set a HOME
+    ;;      (setenv "HOME" (concat cygwin-root "/home/eric"))
+  
+    ;; NT-emacs assumes a Windows shell. Change to bash.
+    (setq shell-file-name "zsh")
+    (setenv "SHELL" shell-file-name) 
+    (setq explicit-shell-file-name shell-file-name) 
+
+    ;; This removes unsightly ^M characters that would otherwise
+    ;; appear in the output of java applications.
+    (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
+
+(require 'package)
+(push '("marmalade" . "http://marmalade-repo.org/packages/")
+      package-archives )
+(push '("melpa" . "http://melpa.milkbox.net/packages/")
+      package-archives)
+(package-initialize) 
+  
+  
+; Enable Evil package
+(require 'evil)
+(evil-mode 1)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("667e296942c561382fe0a8584c26be0fe7a80416270c3beede8c6d69f2f77ccc" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
