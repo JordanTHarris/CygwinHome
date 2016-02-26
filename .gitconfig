@@ -34,7 +34,7 @@
 # Added from my other Git system
 
 [diff]
-	tool = vimdiff
+	tool = vs2015
 	algorithm = histogram
 
 [difftool]
